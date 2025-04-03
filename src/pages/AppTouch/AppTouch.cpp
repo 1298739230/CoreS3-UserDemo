@@ -104,7 +104,7 @@ void AppTouch::onEvent(lv_event_t* event) {
         M5.Speaker.playWav(
             (const uint8_t*)ResourcePool::GetWav("select_0_5s"), ~0u, 1, 1);
         if (obj == instance->View.ui.imgbtn_home) {
-            instance->_Manager->Replace("Pages/HomeMenu");
+            instance->_Manager->Replace("Pages/Desktop");
         } else if (obj == instance->View.ui.imgbtn_next) {
             USBSerial.print("AppTouch -> AppI2C\r\n");
             instance->_Manager->Replace("Pages/AppI2C");

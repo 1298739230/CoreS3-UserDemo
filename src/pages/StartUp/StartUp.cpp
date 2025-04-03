@@ -100,14 +100,14 @@ void StartUp::onEvent(lv_event_t* event) {
                 // lv_obj_clear_flag(instance->View.ui.img_cores3_diagram,
                 //                   LV_OBJ_FLAG_HIDDEN);
             }
-#if MONKEY_TEST_ENABLE
-        } else if (code == LV_EVENT_LONG_PRESSED || code == LV_EVENT_CLICKED) {
-#else
-        } else if (code == LV_EVENT_CLICKED) {
-#endif
+            #if MONKEY_TEST_ENABLE
+            } else if (code == LV_EVENT_LONG_PRESSED || code == LV_EVENT_CLICKED) {
+            #else
+            } else if (code == LV_EVENT_CLICKED) {
+            #endif
             M5.Speaker.playWav(
                 (const uint8_t*)ResourcePool::GetWav("select_0_5s"), ~0u, 1, 1);
-            instance->_Manager->Replace("Pages/HomeMenu");
+            instance->_Manager->Replace("Pages/Desktop");
         }
     }
 }

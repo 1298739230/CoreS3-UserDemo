@@ -32,6 +32,7 @@
 #include "AppTouch/AppTouch.h"
 #include "AppI2C/AppI2C.h"
 #include "AppRTC/AppRTC.h"
+#include "Desktop/Desktop.h"
 
 #define APP_CLASS_MATCH(className)           \
     do {                                     \
@@ -52,6 +53,7 @@ PageBase* AppFactory::CreatePage(const char* name) {
     APP_CLASS_MATCH(AppTouch);
     APP_CLASS_MATCH(AppI2C);
     APP_CLASS_MATCH(AppRTC);
+    APP_CLASS_MATCH(Desktop);
 
     return nullptr;
 }

@@ -14,19 +14,25 @@
 #include "App.h"
 
 void setup() {
+    // 初始化非易失性存储器
     esp_err_t ret = nvs_flash_init();
+    // 如果没有空闲页或找到新版本，则擦除并重新初始化
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES ||
         ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         ESP_ERROR_CHECK(nvs_flash_erase());
         ret = nvs_flash_init();
     }
 
+    // 初始化USB串口
     USBSerial.begin(15200);
+    // 初始化M5CoreS3
     M5.begin();
 
 #if defined(M5CORES3)
+    // 打印M5CoreS3用户演示版本
     USBSerial.printf("M5CoreS3 User Demo, Version: %s\r\n", DEMO_VERSION);
 #elif defined(M5CORES3SE)
+    // 打印M5CoreS3SE用户演示版本
     USBSerial.printf("M5CoreS3SE User Demo, Version: %s\r\n", DEMO_VERSION);
 #endif
 

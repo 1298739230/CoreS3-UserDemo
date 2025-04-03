@@ -119,7 +119,7 @@ void AppMic::onEvent(lv_event_t* event) {
     } else {
         if (code == LV_EVENT_CLICKED) {
             if (obj == instance->View.ui.imgbtn_home) {
-                instance->_Manager->Replace("Pages/HomeMenu");
+                instance->_Manager->Replace("Pages/Desktop");
             } else if (obj == instance->View.ui.imgbtn_next) {
                 USBSerial.print("AppMic -> AppPower\r\n");
                 instance->_Manager->Replace("Pages/AppPower");

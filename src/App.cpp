@@ -3,16 +3,20 @@
 #include "pages/AppFactory.h"
 
 void App_Init() {
+    // 创建AppFactory对象
     static AppFactory factory;
+    // 创建PageManager对象，并传入AppFactory对象
     static PageManager manager(&factory);
 
     /* Make sure the default group exists */
+    // 如果默认的group不存在，则创建一个新的group，并设置为默认的group
     if (!lv_group_get_default()) {
         lv_group_t* group = lv_group_create();
         lv_group_set_default(group);
     }
 
 #if MONKEY_TEST_ENABLE
+    // 如果启用了Monkey测试，则创建Monkey对象，并设置其配置
     lv_monkey_config_t config;
     lv_monkey_config_init(&config);
     config.type = LV_INDEV_TYPE_POINTER;
@@ -23,10 +27,12 @@ void App_Init() {
     lv_monkey_t* monkey = lv_monkey_create(&config);
     lv_monkey_set_enable(monkey, true);
 
+    // 创建一个新的group，并将Monkey对象设置为该group的输入设备
     lv_group_t* group = lv_group_create();
     lv_indev_set_group(lv_monkey_get_indev(monkey), group);
     lv_group_set_default(group);
 
+    // 打印Monkey测试开始的信息
     LV_LOG_USER("lv_monkey test started!");
 #endif
     /* Set screen style */
@@ -63,6 +69,7 @@ void App_Init() {
     manager.Install("AppTouch", "Pages/AppTouch");
     manager.Install("AppI2C", "Pages/AppI2C");
     manager.Install("AppRTC", "Pages/AppRTC");
+    manager.Install("Desktop", "Pages/Desktop");
 
     manager.SetGlobalLoadAnimType(PageManager::LOAD_ANIM_NONE);
 

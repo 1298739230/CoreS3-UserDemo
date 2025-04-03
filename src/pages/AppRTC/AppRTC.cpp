@@ -82,7 +82,7 @@ void AppRTC::onEvent(lv_event_t* event) {
 
     if (code == LV_EVENT_CLICKED) {
         if (obj == instance->View.ui.btn_list[2]) {
-            instance->_Manager->Replace("Pages/HomeMenu");
+            instance->_Manager->Replace("Pages/Desktop");
             return;
         }
         M5.Speaker.playWav((const uint8_t*)ResourcePool::GetWav("select_0_5s"),

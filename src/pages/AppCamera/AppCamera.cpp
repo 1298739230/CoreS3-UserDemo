@@ -16,6 +16,7 @@ void AppCamera::onViewLoad() {
     LV_LOG_USER(__func__);
     View.Create(_root);
 
+    Model.CameraDeinit();
     Model.LTR553Init();
     Model.CameraInit();
 
@@ -52,7 +53,7 @@ void AppCamera::onViewUnload() {
 
     View.Delete();
     Model.ReleaseFramebuffer();
-    Model.CameraDeinit();
+    // Model.CameraDeinit();
 }
 
 void AppCamera::onViewDidUnload() {
@@ -122,11 +123,13 @@ void AppCamera::onEvent(lv_event_t* event) {
     } else {
         if (code == LV_EVENT_CLICKED) {
             if (obj == instance->View.ui.imgbtn_home) {
+
                 M5.Speaker.playWav(
                     (const uint8_t*)ResourcePool::GetWav("select_0_5s"), ~0u, 1,
                     1);
-                instance->_Manager->Replace("Pages/HomeMenu");
+                instance->_Manager->Replace("Pages/Desktop");
             } else if (obj == instance->View.ui.imgbtn_next) {
+
                 USBSerial.print("AppCamera -> AppMic\r\n");
                 instance->_Manager->Replace("Pages/AppMic");
             }
